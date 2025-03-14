@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Expense Tracker</h1>
+            <div class="currency-selector">
+                <label for="currency-symbol">Currency:</label>
+                <select id="currency-symbol">
+                    <option value="$">$ (Dollar)</option>
+                    <option value="€">€ (Euro)</option>
+                    <option value="£">£ (Pound)</option>
+                    <option value="₹">₹ (Rupee)</option>
+                    <option value="¥">¥ (Yen)</option>
+                </select>
+            </div>
+            <div class="summary">
+                <div class="summary-item income">
+                    <h3>Income</h3>
+                    <p id="total-income">$0.00</p>
+                </div>
+                <div class="summary-item expenses">
+                    <h3>Expenses</h3>
+                    <p id="total-expenses">$0.00</p>
+                </div>
+                <div class="summary-item balance">
+                    <h3>Balance</h3>
+                    <p id="balance">$0.00</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="transaction-form">
+                <h2>Add New Transaction</h2>
+                <form id="transaction-form">
+                    <div class="form-group">
+                        <label for="transaction-type">Type</label>
+                        <select id="transaction-type" required>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transaction-date">Date</label>
+                        <input type="date" id="transaction-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transaction-description">Description</label>
+                        <input type="text" id="transaction-description" placeholder="Enter description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transaction-category">Category</label>
+                        <select id="transaction-category" required>
+                            <option value="">Select a category</option>
+                            <optgroup label="Income" class="income-categories">
+                                <option value="Salary">Salary</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Investments">Investments</option>
+                                <option value="Gifts">Gifts</option>
+                                <option value="Other Income">Other Income</option>
+                            </optgroup>
+
+                            <optgroup label="Expenses" class="expense-categories">
+                                <option value="Food">Food</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Housing">Housing</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Education">Education</option>
+                                <option value="Personal Care">Personal Care</option>
+                                <option value="Other Expense">Other Expense</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transaction-amount">Amount</label>
+                        <input type="number" id="transaction-amount" min="0.01" step="0.01" placeholder="Enter amount" required>
+                    </div>
+                    <button type="submit" class="btn">Add Transaction</button>
+                </form>
+            </section>
+
+            <section class="transactions">
+                <div class="transactions-header">
+                    <h2>Transactions</h2>
+                    <div class="filter-container">
+                        <label for="filter-category">Filter by Category:</label>
+                        <select id="filter-category">
+                            <option value="all">All Categories</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="transaction-list" id="transaction-list">
+                    <p class="empty-message">No transactions yet. Add a transaction to get started!</p>
+                </div>
+            </section>
+
+            <section class="data-visualization">
+                <h2>Expense Breakdown</h2>
+                <div class="chart-container">
+                    <canvas id="expense-chart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
